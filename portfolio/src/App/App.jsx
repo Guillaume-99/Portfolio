@@ -1,6 +1,7 @@
 import Header from "../components/Header/Header";
 import About from "../components/AboutMe/AboutMe";
 import Projects from "../components/ProjectCard/ProjectCard";
+import Skills from "../components/Skills/Skills";
 import Contact from "../components/ContactForm/ContactForm";
 
 function App() {
@@ -8,12 +9,16 @@ function App() {
         <>
             <Header />
             <main>
-                <section id="about">
-                    <About />
+                <section id="skills">
+                    <Skills />
                 </section>
 
                 <section id="projects">
                     <Projects />
+                </section>
+
+                <section id="about">
+                    <About />
                 </section>
 
                 <section id="contact">

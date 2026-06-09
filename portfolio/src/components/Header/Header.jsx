@@ -1,4 +1,5 @@
 import Burger from "../Burger/Burger";
+import DesktopNav from "../DesktopNav/DesktopNav";
 import "./Header.scss";
 import { useState } from "react";
 function Header() {
@@ -8,14 +9,11 @@ function Header() {
         setIsOpen(!isOpen);
     };
 
-    const closeMenu = () => {
-        setIsOpen(false);
-    };
-
     return (
         <header>
             <h1 className="name">Guillaume CEBIL</h1>
             <Burger isOpen={isOpen} toggle={toggle} />
+            <DesktopNav />
         </header>
     );
 }

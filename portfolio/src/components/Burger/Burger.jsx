@@ -1,5 +1,4 @@
-import { NavLink } from "react-router-dom";
-function Burger({ isOpen, toggle, closeMenu }) {
+function Burger({ isOpen, toggle }) {
     if (!isOpen) {
         return (
             <div className="burger" onClick={toggle}>
@@ -11,16 +10,15 @@ function Burger({ isOpen, toggle, closeMenu }) {
     return (
         <div className={`burger ${isOpen ? "open" : ""}`} onClick={toggle}>
             <nav className="nav">
-                <i className="fa-solid fa-x close" onClick={closeMenu}></i>
                 <ul className="nav__list">
-                    <li>
-                        <NavLink to="#about">About</NavLink>
+                    <li className="about">
+                        <a href="#about">À propos</a>
                     </li>
                     <li>
-                        <NavLink to="#projects">Projects</NavLink>
+                        <a href="#projects">Projets</a>
                     </li>
                     <li>
-                        <NavLink to="#contact">Contact</NavLink>
+                        <a href="#contact">Contact</a>
                     </li>
                 </ul>
             </nav>
