@@ -1,0 +1,106 @@
+.skills {
+    padding: 20px;
+    background-image: linear-gradient(#2f4858, white);
+
+    &__title {
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        font-family: cinzel, sans-serif;
+        border-bottom: 1px solid #333;
+        border-radius: 5%;
+    }
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+
+        & li {
+            margin: 10px 20px;
+            font-size: 18px;
+            border: 2px solid #d7dee2;
+            border-radius: 15%;
+            color: #ffffff;
+            padding: 0.5em 2em;
+            text-align: center;
+            width: 5em;
+            background-color: rgb(255, 254, 254);
+            font-size: 2em;
+
+            &.html {
+                background-color: #e34c26;
+            }
+
+            &.css {
+                background-color: #264de4;
+            }
+
+            &.javascript {
+                background-color: #f7df1e;
+            }
+
+            &.react {
+                background-color: #61dbfb;
+            }
+
+            &.git {
+                background-color: #f0f0f0;
+                color: #333;
+            }
+        }
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    .skills__title {
+        font-size: 32px;
+    }
+
+    .skills__item {
+        position: relative;
+        width: 95px;
+        height: 95px;
+        border-radius: 18px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+        transform: scale(1);
+
+        &:hover {
+            transform: scale(1.08);
+        }
+
+        & i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.35s ease;
+        }
+    }
+
+    .skills__item .hidden {
+        display: block;
+        position: absolute;
+        left: 50%;
+        bottom: 12px;
+        transform: translateX(-50%);
+        opacity: 0;
+        margin: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .skills__item:hover i {
+        transform: translate(-50%, -90%);
+    }
+
+    .skills__item:hover .hidden {
+        opacity: 1;
+    }
+}
