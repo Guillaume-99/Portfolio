@@ -1,13 +1,24 @@
-import { Outlet } from "react-router-dom";
 import Header from "../components/Header/Header";
-import "./App.scss";
+import About from "../components/AboutMe/AboutMe";
+import Projects from "../components/ProjectCard/ProjectCard";
+import Contact from "../components/ContactForm/ContactForm";
 
 function App() {
     return (
         <>
             <Header />
             <main>
-                <Outlet />
+                <section id="about">
+                    <About />
+                </section>
+
+                <section id="projects">
+                    <Projects />
+                </section>
+
+                <section id="contact">
+                    <Contact />
+                </section>
             </main>
         </>
     );
