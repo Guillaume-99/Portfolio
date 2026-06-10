@@ -20,7 +20,7 @@
             color 0.3s;
 
         &--active {
-            background-color: #333;
+            background-color: #2f4858;
             color: #fff;
             border-color: #333;
         }
@@ -34,6 +34,7 @@
 @media screen and (min-width: 768px) {
     .filters {
         flex-direction: row;
+        width: 100%;
     }
 
     .filters__button {

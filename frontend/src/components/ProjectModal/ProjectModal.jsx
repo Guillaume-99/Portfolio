@@ -4,9 +4,7 @@ function ProjectModal({ project, onClose }) {
     if (!project) return null;
 
     return (
-        <div className="project-modal">
-            <div className="project-modal__overlay" onClick={onClose}></div>
-
+        <div className="project-modal" onClick={onClose}>
             <div className="project-modal__content">
                 <button className="project-modal__close" type="button" onClick={onClose} aria-label="Fermer la modale">
                     ×
