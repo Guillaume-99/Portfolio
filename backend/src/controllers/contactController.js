@@ -1,5 +1,4 @@
 const Contact = require("../models/Contact");
-const transporter = require("../config/mailer");
 
 function isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -24,30 +23,53 @@ exports.sendContact = async (req, res) => {
             message,
         });
 
-        await transporter.sendMail({
-            from: `"Portfolio Contact" <${process.env.SMTP_FROM}>`,
-            to: process.env.CONTACT_RECEIVER_EMAIL,
-            replyTo: email,
-            subject: `[Portfolio] ${subject}`,
-            text: `
+        const emailResponse = await fetch("https://api.brevo.com/v3/smtp/email", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "api-key": process.env.BREVO_API_KEY,
+            },
+            body: JSON.stringify({
+                sender: {
+                    name: "Portfolio Contact",
+                    email: process.env.SMTP_FROM,
+                },
+                to: [
+                    {
+                        email: process.env.CONTACT_RECEIVER_EMAIL,
+                    },
+                ],
+                replyTo: {
+                    email,
+                    name,
+                },
+                subject: `[Portfolio] ${subject}`,
+                htmlContent: `
+          <h2>Nouveau message depuis le portfolio</h2>
+          <p><strong>Nom :</strong> ${name}</p>
+          <p><strong>Email :</strong> ${email}</p>
+          <p><strong>Sujet :</strong> ${subject}</p>
+          <p><strong>Message :</strong></p>
+          <p>${message.replace(/\n/g, "<br>")}</p>
+          <hr>
+          <p><small>ID MongoDB : ${savedContact._id}</small></p>
+        `,
+                textContent: `
 Nom: ${name}
 Email: ${email}
 Sujet: ${subject}
 
 Message:
 ${message}
-      `,
-            html: `
-        <h2>Nouveau message depuis le portfolio</h2>
-        <p><strong>Nom :</strong> ${name}</p>
-        <p><strong>Email :</strong> ${email}</p>
-        <p><strong>Sujet :</strong> ${subject}</p>
-        <p><strong>Message :</strong></p>
-        <p>${message.replace(/\n/g, "<br>")}</p>
-        <hr>
-        <p><small>ID MongoDB : ${savedContact._id}</small></p>
-      `,
+        `,
+            }),
         });
+
+        if (!emailResponse.ok) {
+            const errorData = await emailResponse.text();
+            console.error("Brevo API error:", errorData);
+            return res.status(500).json({ message: "Message enregistré, mais e-mail non envoyé." });
+        }
 
         return res.status(201).json({ message: "Message envoyé avec succès." });
     } catch (error) {
