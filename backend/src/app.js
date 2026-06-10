@@ -22,3 +22,4 @@ app.get("/api/health", (req, res) => {
 app.use("/api/contact", contactRoutes);
 
 module.exports = app;
+console.log("CORS CLIENT_URL =", process.env.CLIENT_URL);
