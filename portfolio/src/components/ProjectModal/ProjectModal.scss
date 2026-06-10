@@ -1,0 +1,79 @@
+.project-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    &__content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        width: 50vh;
+        height: auto;
+        position: relative;
+    }
+
+    &__image {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    &__close {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: #fff;
+        background-color: #68c5ff;
+        border-radius: 30%;
+        cursor: pointer;
+    }
+
+    &__title {
+        text-align: center;
+        margin-top: 0.5em;
+        border-top: 0.5px solid #33333338;
+        border-bottom: 1px solid #33333338;
+    }
+
+    &__techs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+
+        & li {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .project-modal {
+        &__content {
+            width: 80vh;
+        }
+
+        &__close {
+            position: fixed;
+            top: 1em;
+            right: 1em;
+            background-color: transparent;
+        }
+    }
+}

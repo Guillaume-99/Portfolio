@@ -1,0 +1,15 @@
+.projects {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin: 1em auto;
+    width: 60%;
+    border-top: 0.5px solid #33333338;
+    border-bottom: 1px solid #33333338;
+}

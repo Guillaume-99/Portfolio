@@ -17,6 +17,8 @@ function ProjectModal({ project, onClose }) {
                 <h3 className="project-modal__title">{project.title}</h3>
                 <p className="project-modal__description">{project.description}</p>
 
+                <h4 className="project-modal__title">Les technologies utilisées :</h4>
+
                 <ul className="project-modal__techs">
                     {project.technologies.map((tech) => (
                         <li key={tech}>{tech}</li>

@@ -1,13 +1,16 @@
 body {
+    position: relative;
     margin: 0;
     padding: 0;
 }
 h1,
 h2,
-h3 {
+h3,
+h4 {
     font-family: cinzel, serif;
 }
-p {
+p,
+li {
     font-family:
         DM Sans,
         sans-serif;
