@@ -3,12 +3,17 @@ import About from "../components/AboutMe/AboutMe";
 import Projects from "../components/ProjectCard/ProjectCard";
 import Skills from "../components/Skills/Skills";
 import Contact from "../components/ContactForm/ContactForm";
+import Hero from "../components/Hero/Hero";
 
 function App() {
     return (
         <>
             <Header />
             <main>
+                <section id="hero">
+                    <Hero />
+                </section>
+
                 <section id="skills">
                     <Skills />
                 </section>

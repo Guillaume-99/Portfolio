@@ -1,14 +1,13 @@
 .skills {
     padding: 20px;
-    background-image: linear-gradient(#2f4858, white);
+    background-image: linear-gradient(#496373, white);
 
     &__title {
         text-align: center;
-        font-size: 24px;
         font-weight: bold;
         font-family: cinzel, sans-serif;
-        border-bottom: 1px solid #333;
-        border-radius: 5%;
+        border-top: 0.5px solid #33333338;
+        border-bottom: 1px solid #33333338;
     }
 
     &__list {
@@ -59,14 +58,20 @@
 }
 
 @media screen and (min-width: 768px) {
+    .skills__list {
+        max-width: 1000px;
+        margin: auto;
+    }
+
     .skills__title {
         font-size: 32px;
+        width: 60%;
+        margin: 1em auto;
     }
 
     .skills__item {
         position: relative;
-        width: 95px;
-        height: 95px;
+        height: 2em;
         border-radius: 18px;
         overflow: hidden;
         transition: transform 0.3s ease;
@@ -97,7 +102,7 @@
     }
 
     .skills__item:hover i {
-        transform: translate(-50%, -90%);
+        transform: translate(-50%, -120%);
     }
 
     .skills__item:hover .hidden {

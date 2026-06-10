@@ -1,0 +1,17 @@
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #d1e3ee;
+    font-family: cinzel, sans-serif;
+    background-image: linear-gradient(#2f4858, #496373);
+
+    &__title {
+    }
+
+    &__subtitle {
+        width: 60%;
+        text-align: center;
+    }
+}
