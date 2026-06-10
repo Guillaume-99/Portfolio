@@ -1,5 +1,6 @@
 import "./ContactForm.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Toast from "../Toast/Toast";
 
 function ContactForm() {
     const [formData, setFormData] = useState({
@@ -28,10 +29,11 @@ function ContactForm() {
         e.preventDefault();
 
         setStatus({
-            loading: true,
+            loading: false,
             error: "",
             success: "",
         });
+        setShowToast(true);
 
         try {
             const response = await fetch("https://portfolio-16f4.onrender.com/api/contact", {
@@ -69,39 +71,54 @@ function ContactForm() {
         }
     };
 
+    const [showToast, setShowToast] = useState(false);
+
+    useEffect(() => {
+        if (!showToast) return;
+
+        const timer = setTimeout(() => {
+            setShowToast(false);
+        }, 3000);
+
+        return () => clearTimeout(timer);
+    }, [showToast]);
+
     return (
-        <section className="contact-form" aria-labelledby="contact-title">
-            <h2 id="contact-title">Contactez-moi</h2>
+        <>
+            <Toast message="Message envoyé !" isVisible={showToast} />
+            <div className="contact-form" aria-labelledby="contact-title">
+                <h2 id="contact-title">Contactez-moi</h2>
 
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="name">Nom</label>
-                    <input id="name" name="name" type="text" placeholder="Votre nom" value={formData.name} onChange={handleChange} autoComplete="name" required />
-                </div>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label htmlFor="name">Nom</label>
+                        <input id="name" name="name" type="text" placeholder="Votre nom" value={formData.name} onChange={handleChange} autoComplete="name" required />
+                    </div>
 
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input id="email" name="email" type="email" placeholder="votre@email.com" value={formData.email} onChange={handleChange} autoComplete="email" required />
-                </div>
+                    <div>
+                        <label htmlFor="email">Email</label>
+                        <input id="email" name="email" type="email" placeholder="votre@email.com" value={formData.email} onChange={handleChange} autoComplete="email" required />
+                    </div>
 
-                <div>
-                    <label htmlFor="subject">Sujet</label>
-                    <input id="subject" name="subject" type="text" placeholder="Sujet de votre message" value={formData.subject} onChange={handleChange} required />
-                </div>
+                    <div>
+                        <label htmlFor="subject">Sujet</label>
+                        <input id="subject" name="subject" type="text" placeholder="Sujet de votre message" value={formData.subject} onChange={handleChange} required />
+                    </div>
 
-                <div>
-                    <label htmlFor="message">Message</label>
-                    <textarea id="message" name="message" placeholder="Votre message" value={formData.message} onChange={handleChange} rows="6" required />
-                </div>
+                    <div>
+                        <label htmlFor="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Votre message" value={formData.message} onChange={handleChange} rows="6" required />
+                    </div>
 
-                <button type="submit" disabled={status.loading}>
-                    {status.loading ? "Envoi..." : "Envoyer"}
-                </button>
+                    <button type="submit" disabled={status.loading}>
+                        {status.loading ? "Envoi..." : "Envoyer"}
+                    </button>
 
-                {status.success && <p className="success-message">{status.success}</p>}
-                {status.error && <p className="error-message">{status.error}</p>}
-            </form>
-        </section>
+                    {status.success && <p className="success-message">{status.success}</p>}
+                    {status.error && <p className="error-message">{status.error}</p>}
+                </form>
+            </div>
+        </>
     );
 }
 
