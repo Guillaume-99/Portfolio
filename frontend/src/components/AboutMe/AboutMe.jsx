@@ -1,7 +1,7 @@
 import "./AboutMe.scss";
 function About() {
     return (
-        <div className="about">
+        <div className="aboutMe">
             <h2>À propos de moi</h2>
             <p>
                 Fraîchement diplômé et reconverti en développeur front-end junior, je suis un passionné de React — un peu comme une rockstar du code, mais sans les groupies. Rigoureux et motivé, je
