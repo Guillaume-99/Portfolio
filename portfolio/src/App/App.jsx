@@ -1,6 +1,6 @@
 import Header from "../components/Header/Header";
 import About from "../components/AboutMe/AboutMe";
-import Projects from "../components/ProjectCard/ProjectCard";
+import Projects from "../components/ProjectSection/ProjectSection";
 import Skills from "../components/Skills/Skills";
 import Contact from "../components/ContactForm/ContactForm";
 import Hero from "../components/Hero/Hero";
