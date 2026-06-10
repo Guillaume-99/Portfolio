@@ -5,7 +5,14 @@ function ContactForm() {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
+        subject: "",
         message: "",
+    });
+
+    const [status, setStatus] = useState({
+        loading: false,
+        error: "",
+        success: "",
     });
 
     const handleChange = (e) => {
@@ -17,11 +24,49 @@ function ContactForm() {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // À remplacer plus tard par l'appel API / backend
-        console.log("Formulaire envoyé :", formData);
+        setStatus({
+            loading: true,
+            error: "",
+            success: "",
+        });
+
+        try {
+            const response = await fetch("http://localhost:5000/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || "Erreur lors de l'envoi du message.");
+            }
+
+            setStatus({
+                loading: false,
+                error: "",
+                success: "Message envoyé avec succès !",
+            });
+
+            setFormData({
+                name: "",
+                email: "",
+                subject: "",
+                message: "",
+            });
+        } catch (error) {
+            setStatus({
+                loading: false,
+                error: error.message || "Une erreur est survenue.",
+                success: "",
+            });
+        }
     };
 
     return (
@@ -40,11 +85,21 @@ function ContactForm() {
                 </div>
 
                 <div>
+                    <label htmlFor="subject">Sujet</label>
+                    <input id="subject" name="subject" type="text" placeholder="Sujet de votre message" value={formData.subject} onChange={handleChange} required />
+                </div>
+
+                <div>
                     <label htmlFor="message">Message</label>
                     <textarea id="message" name="message" placeholder="Votre message" value={formData.message} onChange={handleChange} rows="6" required />
                 </div>
 
-                <button type="submit">Envoyer</button>
+                <button type="submit" disabled={status.loading}>
+                    {status.loading ? "Envoi..." : "Envoyer"}
+                </button>
+
+                {status.success && <p className="success-message">{status.success}</p>}
+                {status.error && <p className="error-message">{status.error}</p>}
             </form>
         </section>
     );
