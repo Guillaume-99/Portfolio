@@ -1,3 +1,4 @@
+import { SiHtml5, SiCss, SiGithub, SiReact, SiJavascript } from "react-icons/si";
 import "./Skills.scss";
 function Skills() {
     return (
@@ -5,24 +6,24 @@ function Skills() {
             <h2 className="skills__title">Compétences</h2>
             <ul className="skills__list">
                 <li className="skills__item html">
-                    <i className="fa-brands fa-html5"></i>
+                    <SiHtml5 className="skills__item--icons" />
                     <p className="hidden">HTML</p>
                 </li>
                 <li className="skills__item css">
-                    <i className="fa-brands fa-css3-alt"></i>
+                    <SiCss className="skills__item--icons" />
                     <p className="hidden">CSS</p>
                 </li>
                 <li className="skills__item git">
-                    <i className="fa-brands fa-github"></i>
+                    <SiGithub className="skills__item--icons" />
                     <p className="hidden">Git</p>
                 </li>
                 <li className="skills__item react">
-                    <i className="fa-brands fa-react"></i>
+                    <SiReact className="skills__item--icons" />
                     <p className="hidden">React</p>
                 </li>
 
                 <li className="skills__item javascript">
-                    <i className="fa-brands fa-js"></i>
+                    <SiJavascript className="skills__item--icons" />
                     <p className="hidden">JavaScript</p>
                 </li>
             </ul>

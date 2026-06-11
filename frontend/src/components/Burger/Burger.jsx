@@ -2,7 +2,7 @@ function Burger({ isOpen, toggle }) {
     if (!isOpen) {
         return (
             <div className="burger" onClick={toggle}>
-                <i className="fa-solid fa-bars"></i>
+                <p className="burger__icon">☰</p>
             </div>
         );
     }

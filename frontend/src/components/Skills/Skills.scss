@@ -80,7 +80,7 @@
             transform: scale(1.08);
         }
 
-        & i {
+        &--icons {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -100,7 +100,7 @@
         transition: opacity 0.3s ease;
     }
 
-    .skills__item:hover i {
+    .skills__item:hover .skills__item--icons {
         transform: translate(-50%, -120%);
     }
 
