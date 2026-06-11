@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { projectsData } from "../../data/projectData";
+import { projectsData } from "../../Data/projectData";
 import Filters from "../Filters/Filters";
 import Projects from "../Projects/Projects";
 import ProjectModal from "../ProjectModal/ProjectModal";
