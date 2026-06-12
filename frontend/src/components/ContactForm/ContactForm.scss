@@ -34,6 +34,20 @@
     }
 }
 
+.success-message {
+    margin-top: 12px;
+    color: #1f7a1f;
+    font-weight: 600;
+    text-align: center;
+}
+
+.error-message {
+    margin-top: 12px;
+    color: #b00020;
+    font-weight: 600;
+    text-align: center;
+}
+
 @media screen and (min-width: 768px) {
     form {
         width: 30%;

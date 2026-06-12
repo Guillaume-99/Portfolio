@@ -1,6 +1,5 @@
 import "./ContactForm.scss";
-import { useState, useEffect } from "react";
-import Toast from "../Toast/Toast";
+import { useState } from "react";
 
 function ContactForm() {
     const [formData, setFormData] = useState({
@@ -15,8 +14,6 @@ function ContactForm() {
         error: "",
         success: "",
     });
-
-    const [showToast, setShowToast] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -35,8 +32,6 @@ function ContactForm() {
             error: "",
             success: "",
         });
-
-        setShowToast(false);
 
         try {
             const response = await fetch("https://portfolio-16f4.onrender.com/api/contact", {
@@ -59,8 +54,6 @@ function ContactForm() {
                 success: "Message envoyé avec succès !",
             });
 
-            setShowToast(true);
-
             setFormData({
                 name: "",
                 email: "",
@@ -73,61 +66,51 @@ function ContactForm() {
                 error: error.message || "Une erreur est survenue.",
                 success: "",
             });
-
-            setShowToast(false);
         }
     };
 
-    useEffect(() => {
-        if (!showToast) return;
-
-        const timer = setTimeout(() => {
-            setShowToast(false);
-        }, 3000);
-
-        return () => clearTimeout(timer);
-    }, [showToast]);
-
     return (
-        <>
-            <Toast message={status.success} isVisible={showToast} />
+        <div className="contact-form" aria-labelledby="contact-title">
+            <h2 id="contact-title">Contactez-moi</h2>
 
-            <div className="contact-form" aria-labelledby="contact-title">
-                <h2 id="contact-title">Contactez-moi</h2>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="name">Nom</label>
+                    <input id="name" name="name" type="text" placeholder="Votre nom" value={formData.name} onChange={handleChange} autoComplete="name" required />
+                </div>
 
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label htmlFor="name">Nom</label>
-                        <input id="name" name="name" type="text" placeholder="Votre nom" value={formData.name} onChange={handleChange} autoComplete="name" required />
-                    </div>
+                <div>
+                    <label htmlFor="email">Email</label>
+                    <input id="email" name="email" type="email" placeholder="votre@email.com" value={formData.email} onChange={handleChange} autoComplete="email" required />
+                </div>
 
-                    <div>
-                        <label htmlFor="email">Email</label>
-                        <input id="email" name="email" type="email" placeholder="votre@email.com" value={formData.email} onChange={handleChange} autoComplete="email" required />
-                    </div>
+                <div>
+                    <label htmlFor="subject">Sujet</label>
+                    <input id="subject" name="subject" type="text" placeholder="Sujet de votre message" value={formData.subject} onChange={handleChange} required />
+                </div>
 
-                    <div>
-                        <label htmlFor="subject">Sujet</label>
-                        <input id="subject" name="subject" type="text" placeholder="Sujet de votre message" value={formData.subject} onChange={handleChange} required />
-                    </div>
+                <div>
+                    <label htmlFor="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Votre message" value={formData.message} onChange={handleChange} rows="6" required />
+                </div>
 
-                    <div>
-                        <label htmlFor="message">Message</label>
-                        <textarea id="message" name="message" placeholder="Votre message" value={formData.message} onChange={handleChange} rows="6" required />
-                    </div>
+                <button type="submit" disabled={status.loading}>
+                    {status.loading ? "Envoi..." : "Envoyer"}
+                </button>
 
-                    {status.error && (
-                        <p className="error-message" role="alert">
-                            {status.error}
-                        </p>
-                    )}
+                {status.success && (
+                    <p className="success-message" aria-live="polite">
+                        {status.success}
+                    </p>
+                )}
 
-                    <button type="submit" disabled={status.loading}>
-                        {status.loading ? "Envoi..." : "Envoyer"}
-                    </button>
-                </form>
-            </div>
-        </>
+                {status.error && (
+                    <p className="error-message" role="alert">
+                        {status.error}
+                    </p>
+                )}
+            </form>
+        </div>
     );
 }
 
