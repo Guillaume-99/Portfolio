@@ -14,12 +14,12 @@ function PortfolioSection() {
     const filteredProjects = activeFilter === "Tous" ? projectsData : projectsData.filter((project) => project.category === activeFilter);
 
     return (
-        <div className="projects">
-            <h2>Mes projets</h2>
+        <div className="projects-section">
+            <h2 className="projects-section__title">Mes projets</h2>
 
             <Filters filters={filters} activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
 
-            <Projects projects={filteredProjects} onOpenModal={setSelectedProject} />
+            <Projects key={activeFilter} projects={filteredProjects} onOpenModal={setSelectedProject} />
 
             <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
         </div>
