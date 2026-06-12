@@ -5,6 +5,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-image: linear-gradient(#496373, white);
     border-radius: 10px;
+    max-width: 300px;
 
     &__button {
         border: none;
@@ -20,12 +21,34 @@
         height: 225px;
         border-radius: 10px 10px 0 0;
     }
+
+    &__title-techs {
+        text-align: center;
+        margin-top: 0.5em;
+        border-top: 0.5px solid #33333338;
+        border-bottom: 1px solid #33333338;
+    }
+
+    &__techs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+
+        & li {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 5px 10px;
+            background-color: #83b1cd46;
+            border-radius: 5px;
+        }
+    }
 }
 
 @media screen and (min-width: 768px) {
     .project-card {
-        width: 300px;
-
         &__image {
             height: 250px;
         }

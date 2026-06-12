@@ -11,6 +11,8 @@
     background-color: rgba(0, 0, 0, 0.5);
 
     &__content {
+        display: flex;
+        flex-direction: column;
         background-color: #fff;
         padding: 20px;
         border-radius: 10px;
@@ -37,29 +39,28 @@
         border-radius: 30%;
         cursor: pointer;
     }
-
     &__title {
         text-align: center;
         margin-top: 0.5em;
         border-top: 0.5px solid #33333338;
         border-bottom: 1px solid #33333338;
     }
+    &__description {
+        margin-top: 0;
+    }
+    &__text {
+        align-self: center;
+    }
 
-    &__techs {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        list-style: none;
-        padding: 0;
-
-        & li {
-            display: inline-block;
-            margin: 5px 10px;
-            padding: 5px 10px;
-            background-color: #f0f0f0;
-            border-radius: 5px;
-        }
+    &__link {
+        text-decoration: none;
+        color: white;
+        background-color: #507a94e0;
+        padding: 0.5em;
+        border-radius: 5em;
+        text-align: center;
+        align-self: center;
+        width: 60%;
     }
 }
 
@@ -74,6 +75,24 @@
             top: 1em;
             right: 1em;
             background-color: transparent;
+        }
+
+        &__link {
+            width: 30%;
+
+            &:hover,
+            &:focus-visible {
+                background: #3b5b6d;
+                color: #ffffff;
+                transform: translateY(-2px);
+                box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+                border-color: rgba(255, 255, 255, 0.14);
+            }
+
+            &:active {
+                transform: translateY(0);
+                box-shadow: none;
+            }
         }
     }
 }

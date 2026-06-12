@@ -1,5 +1,4 @@
 import "./ProjectModal.scss";
-
 function ProjectModal({ project, onClose }) {
     if (!project) return null;
 
@@ -15,13 +14,14 @@ function ProjectModal({ project, onClose }) {
                 <h3 className="project-modal__title">{project.title}</h3>
                 <p className="project-modal__description">{project.description}</p>
 
-                <h4 className="project-modal__title">Les technologies utilisées :</h4>
-
-                <ul className="project-modal__techs">
-                    {project.technologies.map((tech) => (
-                        <li key={tech}>{tech}</li>
-                    ))}
-                </ul>
+                <h4 className="project-modal__title">Vous voulez une démo ?</h4>
+                {project.gitHubPages ? (
+                    <a href={project.gitHubPages} target="_blank" rel="noopener noreferrer" className="project-modal__link">
+                        Voir la démo du projet
+                    </a>
+                ) : (
+                    <p className="project-modal__text">Désolé, la démo ne peut pas être affichée.</p>
+                )}
             </div>
         </div>
     );

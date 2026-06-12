@@ -7,7 +7,12 @@ function ProjectCard({ project, onOpenModal }) {
                 <img className="project-card__image" src={project.image} alt={project.alt} />
                 <div className="project-card__content">
                     <h3 className="project-card__title">{project.title}</h3>
-                    <p className="project-card__text">{project.shortDescription}</p>
+                    <h4 className="project-card__title-techs">Les technologies utilisées :</h4>
+                    <ul className="project-card__techs">
+                        {project.technologies.map((tech) => (
+                            <li key={tech}>{tech}</li>
+                        ))}
+                    </ul>
                 </div>
             </button>
         </article>
