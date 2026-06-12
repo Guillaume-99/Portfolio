@@ -16,6 +16,8 @@ function ContactForm() {
         success: "",
     });
 
+    const [showToast, setShowToast] = useState(false);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
 
@@ -29,11 +31,12 @@ function ContactForm() {
         e.preventDefault();
 
         setStatus({
-            loading: false,
+            loading: true,
             error: "",
             success: "",
         });
-        setShowToast(true);
+
+        setShowToast(false);
 
         try {
             const response = await fetch("https://portfolio-16f4.onrender.com/api/contact", {
@@ -56,6 +59,8 @@ function ContactForm() {
                 success: "Message envoyé avec succès !",
             });
 
+            setShowToast(true);
+
             setFormData({
                 name: "",
                 email: "",
@@ -68,10 +73,10 @@ function ContactForm() {
                 error: error.message || "Une erreur est survenue.",
                 success: "",
             });
+
+            setShowToast(false);
         }
     };
-
-    const [showToast, setShowToast] = useState(false);
 
     useEffect(() => {
         if (!showToast) return;
@@ -85,7 +90,8 @@ function ContactForm() {
 
     return (
         <>
-            <Toast message="Message envoyé !" isVisible={showToast} />
+            <Toast message={status.success} isVisible={showToast} />
+
             <div className="contact-form" aria-labelledby="contact-title">
                 <h2 id="contact-title">Contactez-moi</h2>
 
@@ -110,12 +116,15 @@ function ContactForm() {
                         <textarea id="message" name="message" placeholder="Votre message" value={formData.message} onChange={handleChange} rows="6" required />
                     </div>
 
+                    {status.error && (
+                        <p className="error-message" role="alert">
+                            {status.error}
+                        </p>
+                    )}
+
                     <button type="submit" disabled={status.loading}>
                         {status.loading ? "Envoi..." : "Envoyer"}
                     </button>
-
-                    {status.success && <p className="success-message">{status.success}</p>}
-                    {status.error && <p className="error-message">{status.error}</p>}
                 </form>
             </div>
         </>
