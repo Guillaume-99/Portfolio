@@ -10,10 +10,18 @@ const app = express();
 
 app.use(helmet());
 
+const allowedOrigins = ["http://localhost:5173", "https://guillaumecebil.fr", "https://www.guillaumecebil.fr"];
+
 app.use(
     cors({
-        origin: process.env.CLIENT_URL,
-        methods: ["POST", "GET"],
+        origin: function (origin, callback) {
+            if (!origin || allowedOrigins.includes(origin)) {
+                callback(null, true);
+            } else {
+                callback(new Error("Not allowed by CORS"));
+            }
+        },
+        methods: ["GET", "POST"],
     }),
 );
 
@@ -36,5 +44,3 @@ app.get("/api/health", (req, res) => {
 app.use("/api/contact", contactLimiter, contactRoutes);
 
 module.exports = app;
-
-console.log("CORS CLIENT_URL =", process.env.CLIENT_URL);
