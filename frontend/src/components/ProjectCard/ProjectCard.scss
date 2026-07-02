@@ -3,9 +3,14 @@
     cursor: pointer;
     margin: 0 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-image: linear-gradient(#496373, white);
+    transition: box-shadow 0.25s ease;
+    background-color: #ffffff;
     border-radius: 10px;
     max-width: 300px;
+
+    &:hover {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+    }
 
     &__button {
         border: none;
@@ -17,7 +22,7 @@
     &__image {
         width: 100%;
         object-fit: cover;
-        object-position: center;
+        object-position: top;
         height: 225px;
         border-radius: 10px 10px 0 0;
     }
